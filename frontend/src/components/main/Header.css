@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #ffffffad;
+}
+
+.nav-link {
+    font-family: "Coolvetica";
+    color: #333;
+    letter-spacing: 1px;
+    font-size: 17px;
+}   
+
+.nav-link:hover {
+    opacity: 0.9;
+}

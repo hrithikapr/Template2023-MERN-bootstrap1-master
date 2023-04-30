@@ -1,0 +1,218 @@
+.contactHeader-block {
+    height: 400px;
+    width: 100%;
+    background-image: linear-gradient(180deg, rgba(237, 199, 183,0.8), rgba(172, 59, 97,0.5)), url('https://designonesource.com/wp-content/uploads/2020/03/Slider-1-1.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 0 8%;
+    position: relative;
+    font-family: 'Coolvetica';
+}
+
+.contactHeader-block .contHead {
+    color: #fff;
+    width: 50%;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 8%;
+}
+
+.contHead p {
+    font-size: 15px;
+    margin-left: 10px;
+    font-family: 'Helvetica';
+}
+
+.animateContHead,
+.cursorAnimate{
+    font-size: 50px;
+}
+
+.cont-area {
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.contHead .cont-area .contbtn {
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 20px;
+    margin-top: 5px;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+}
+.contHead .cont-area .contbtn:hover{
+    transform: scaleX(1.03);
+    transition: ease-out;
+    transition:0.3s
+}
+.social-icons{
+    position: absolute;
+    right: 5%;
+    bottom: 8%;
+    /* background-color: #ffffff86; */
+    text-align: center;
+    width: 5%;
+    border-radius: 50%;
+}
+.social-icons .fab{
+    display: block;
+    margin: 10px 1px;
+    font-size: 30px;
+    color: #fff;
+}
+.social-icons .fab:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.contact{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.contact .contact-content{
+    max-width: 100%;
+    text-align: center;
+}
+.contact .contact-content h2{
+    font-size: 36px;
+    font-weight: 500;
+    font-family: 'Coolvetica';
+    color: #16508d;
+    border-bottom: 4px solid #f04444;
+    display: inline-block;
+}
+.contact .contact-content p{
+    font-family: 'Helvetica';
+    text-align: left;
+    font-weight: 300;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.contactContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.contactContainer .contactInfo{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* background: #EEE2DC; */
+}
+.contactContainer .contactInfo .contactBox{
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+.contactContainer .contactInfo .contactBox .contact-icons{
+    min-width: 60px;
+    height: 60px;
+    background: #EDC7b7;
+    color: #AC3B61;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+.contactContainer .contactInfo .contactBox .contact-text{
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #16508d;
+    flex-direction: column;
+    font-weight: 300;   
+}
+.contactContainer .contactInfo .contactBox .contact-text h3{
+    color: #f04444;
+    font-weight: 500;
+}
+.contactForm{
+    width: 40%;
+    padding: 40px;
+    /* background: #EDC7b7; */
+    background: #EEE2DC;
+    
+}
+.contactForm h2{
+    font-size: 30px;
+    color: #16508d;
+    font-family: 'Coolvetica';
+    border-bottom: 4px solid #f04444;
+    display: inline-block;
+    font-weight: 500;
+}
+.contactForm .inputBox{
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    font-family: 'Helvetica';
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    background: #EEE2DC;
+    outline: none;
+    resize: none;
+}
+.contactForm .inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+.contactForm .inputBox input:focus ~ span,
+.contactForm .inputBox input:valid ~ span,
+.contactForm .inputBox textarea:focus ~ span,
+.contactForm .inputBox textarea:valid ~ span{
+    color: #123C69;
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+.contactForm .inputBox input[type="submit"]{
+    width: 100px;
+    background: #AC3B61;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+@media (max-width:991px)
+{
+    .contact{
+        padding: 50px;
+    }
+    .contactContainer{
+        flex-direction: column;
+    }
+    .contactContainer .contactInfo{
+        margin-bottom: 40px;
+    }
+    .contactContainer .contactInfo,
+    .contactForm{
+        width: 100%;
+    }
+}

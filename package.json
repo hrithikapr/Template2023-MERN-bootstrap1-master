@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-hook-form": "^7.43.5",
+    "swiper": "^9.1.0"
+  }
+}

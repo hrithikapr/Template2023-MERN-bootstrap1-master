@@ -1,0 +1,58 @@
+.form-content {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    display: flex;
+    font-family: 'Coolvetica';
+    font-size: 13px;
+}
+
+.form-content .artformBx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.form-content .artformBx .inputBx{
+    margin-bottom: 20px;
+}
+
+.form-content .artformBx .inputBx span{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #333;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.form-content .artformBx .inputBx input,
+.form-content .artformBx .inputBx select{
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #333;
+    font-size: 16px;
+    letter-spacing: 1px;
+    background: transparent;
+    border-radius: 30px;    
+}
+
+.form-content .artformBx .inputBx input[type='submit']{
+    background: #f04444;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;   
+    width: 30%;
+    text-align: center;
+    text-transform: uppercase;
+    margin-left: 70%;
+}
+
+.form-content .artformBx .inputBx input[type='submit']:hover{
+    opacity: 0.9;
+}
