@@ -19,16 +19,16 @@ const ArtworkForm = () => {
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues,
-        validationSchema: artSchema,
+        // validationSchema: artSchema,
         onSubmit: async (values, { resetForm }) => {
 
+            console.log(values);
             const res = await fetch(url + '/art/add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(values)
 
             });
-            console.log(values);
             console.log(res.status);
             if (res.status === 201) {
                 Swal.fire({

@@ -42,7 +42,7 @@ const ManageExhibitions = () => {
             data-mdb-toggle="modal"
             data-mdb-target="#updateArtwork"
           >
-            Manage your artworks <i class="fas fa-arrow-right fa-lg"></i>
+            Manage Exhibition <i class="fas fa-arrow-right fa-lg"></i>
           </button>
         </div>
       </div>

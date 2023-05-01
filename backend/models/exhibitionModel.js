@@ -4,8 +4,8 @@ const SALT = 10;
 
 const exhibitionSchema = new Schema({
   organizer: { type: String, required: true, },
-  theme: { type: String, required: true, unique: true },
-  description: { type: String, required: true, unique: true },
+  theme: { type: String, required: true },
+  // description: { type: String, required: true, unique: true },
   artworks: [{ type: String }],
   price: { type: Number, required: true },
   start_at: Date,

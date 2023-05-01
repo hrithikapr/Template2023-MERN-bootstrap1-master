@@ -3,6 +3,10 @@
 var useReflexion = true;
 var showStats = false;
 
+// const getexhibitionDataById = require('./ManageExhibition');
+
+
+
 // Handle different screen ratios
 const mapVal = (value, min1, max1, min2, max2) => min2 + (value - min1) * (max2 - min2) / (max1 - min1);
 var fovX = () => mapVal(window.innerWidth / window.innerHeight, 16/9, 9/16, 1.7, Math.PI / 3);
@@ -38,10 +42,13 @@ regl = require('regl')({
 
 map = require('./map')();
 const mesh = require('./mesh');
+const getexhibitionDataById = require('./ManageExhibition');
 drawMap = mesh(regl, map, useReflexion);
 placement = require('./placement')(regl, map);
 drawPainting = require('./painting')(regl);
 fps = require('./fps')(map, fovY);
+
+getexhibitionDataById();
 
 const context = regl({
 	cull: {
