@@ -11,9 +11,9 @@ const ManageArtForm = () => {
     const [currentArts, setCurrentArts] = useState(JSON.parse(sessionStorage.getItem('art')));
 
     const initialValues = {
-        organizer: currentUser._id,
-        artworks: '',
-        theme: 'white',
+        title: '',
+        artworks: [currentArts],
+        theme: 'White',
         price: 0,
         start_at: '',
         end_at: ''
@@ -61,61 +61,18 @@ const ManageArtForm = () => {
                     <form className='art-form row' onSubmit={handleSubmit}>
                         <div className="your-arts">
                             <div className="arts">
+                                {}
                                 <label>
                                     <input type="checkbox" name='art1' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
                                     <span>Art1</span>
                                 </label>
                             </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art2' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art2</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art3' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art3</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
-                            <div className="arts">
-                                <label>
-                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art4</span>
-                                </label>
-                            </div>
                         </div>
                         <hr />
+                        <div className="inputBx ">
+                            <span>Exhibition title</span>
+                            <input type="text" name='title' id='title' autoComplete='off' value={values.title} onChange={handleChange} onBlur={handleBlur} />
+                        </div>
                         <div className="inputBx col-6">
                             <span>Ticket Price</span>
                             <input type="number" name='price' id='price' autoComplete='off' value={values.price} onChange={handleChange} onBlur={handleBlur} />

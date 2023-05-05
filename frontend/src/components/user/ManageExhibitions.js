@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import signUpImg from '../../assets/images/SignUp.jpg'
 import { useFormik } from 'formik';
 import { signupschema } from '../../validationSchema';
@@ -73,7 +73,7 @@ const ManageExhibitions = () => {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  Manage Artworks
+                  Manage Exhibition
                 </h5>
                 <button
                   type="button"
@@ -90,29 +90,41 @@ const ManageExhibitions = () => {
         </div>
 
         <div className="content-table">
-          <h2>Your Artworks</h2>
+          <h2>Your Exhibitions </h2>
+          <h6>Organizer code: #{currentUser._id}</h6>
           <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Organizer</th>
-                <th scope="col">Description</th>
+                <th scope="col">Exhibition Title</th>
                 <th scope="col">Theme </th>
+                <th scope="col">Timing</th>
+                <th scope="col">Artworks</th>
                 <th scope="col">Ticket Price</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, unde?{/*currentArt.title*/}</td>
-                <td className='disc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illo, optio porro repellendus mollitia cum quibusdam vel fugiat beatae sunt adipisci? In eaque ratione ullam harum accusantium doloremque voluptatum voluptate, animi mollitia doloribus dolorem non accusamus similique ex veniam tempora itaque voluptas. Amet officia architecto harum! Temporibus libero neque dolorem dolorum suscipit eum ducimus beatae eius ipsa! Impedit tenetur provident eos adipisci excepturi fuga reprehenderit autem at natus maxime iusto cumque alias, nesciunt tempore ab praesentium incidunt exercitationem dignissimos ex quod debitis vitae ea nemo corporis? Illum cum, atque unde similique amet labore, quaerat earum tempora ex ipsum totam laboriosam!{/*currentArt.discription*/}</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td>450000000000000{/*currentArt.price*/}</td>
-                <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
-                  <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
-              </tr>
+              {currentExhibition && currentExhibition.map((exhib) => {
+                return (
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>{exhib.title}</td>
+                    <td>{exhib.theme}</td>
+                    <td>{exhib.start_at.slice(0, 10)} to {exhib.end_at.slice(0, 10)}</td>
+                    <td>
+                      <select name="arts" id="arts">
+                        <option value={exhib.artworks}>Historia <Link to="/"> x </Link></option>
+                        <option value={exhib.artworks}>Pictoria</option>
+                        <option value={exhib.artworks}>Historia</option>
+                      </select>
+                    </td>
+                    <td>{exhib.price}</td>
+                    <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
+                      <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
 

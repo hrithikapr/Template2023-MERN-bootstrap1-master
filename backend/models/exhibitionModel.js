@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const SALT = 10;
 
 const exhibitionSchema = new Schema({
-  organizer: { type: String, required: true, },
+  title: { type: String, required: true, },
   theme: { type: String, required: true },
   // description: { type: String, required: true, unique: true },
   artworks: [{ type: String }],
