@@ -20,7 +20,7 @@ export const contactUSschema = Yup.object({
 
 export const artSchema = Yup.object({
     title: Yup.string().min(2).max(25).required('Please enter your name'),
-    discription: Yup.string().min(5).max(50).required('Please enter exhibition discription'),
+    description: Yup.string().min(5).max(50).required('Please enter exhibition description'),
     artist: Yup.string().min(2).max(25).required('Please enter artist name'),
     price: Yup.number().required('Please enter price'),
 })

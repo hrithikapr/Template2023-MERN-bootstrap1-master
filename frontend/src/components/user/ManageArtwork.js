@@ -2,28 +2,50 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 // import { NavLink } from 'react-router-dom';
 import app_config from '../../config';
-import { useFormik } from 'formik';
-import { artSchema } from '../../validationSchema';
-import Swal from 'sweetalert2';
+// import { useFormik } from 'formik';
+// import { artSchema } from '../../validationSchema';
+// import Swal from 'sweetalert2';
 import './ManageArtwork.css'
 import ArtworkForm from './ArtworkForm';
 import Typewriter from 'typewriter-effect';
+import { toast } from 'react-hot-toast';
 
 const ManageArtwork = () => {
 
+  const [currentArt, setCurrentArt] = useState([]);
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
-  const [currentArt, setCurrentArt] = useState(JSON.parse(sessionStorage.getItem('art')));
-  const [showForm, setShowForm] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
 
-  // console.log(currentUser._id);
+  const fetchArtData = async () => {
+    const res = await fetch(app_config.apiurl + '/art/getall')
+    // console.log(res.status);
+    const artData = await res.json()
+    console.log(artData);
+    setCurrentArt(artData.result)
+
+  };
+  useEffect(() => {
+    fetchArtData();
+  }, []);
+
 
   const deleteArt = async (id) => {
-    alert('Delete '+currentUser._id);
+    // alert('Delete ' + id);
+    const res = await fetch(app_config.apiurl + '/art/detete' + id, { method: 'DELETE' })
+    console.log(res.status);
+
+    fetchArtData();
+
+    if (res.status === 200) {
+      toast.success('Artwork deleted')
+    }
   }
   const updateArt = async (id) => {
-    alert('Update '+currentUser._id);
-  }
+    alert('Update ' + currentUser._id);
+    // setShowForm(true)
+    // setCurrentArt(id)
 
+  }
 
   return (
     <>
@@ -49,7 +71,7 @@ const ManageArtwork = () => {
             data-mdb-toggle="modal"
             data-mdb-target="#updateArtwork"
           >
-            Add your artworks <i class="fas fa-arrow-right fa-lg"></i>
+            Add your artworks <i className="fas fa-arrow-right fa-lg"></i>
           </button>
         </div>
       </div>
@@ -95,22 +117,22 @@ const ManageArtwork = () => {
             </thead>
             <tbody>
 
-              <tr>
-                <th scope="row">1</th>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, unde?{/*currentArt.title*/}</td>
-                <td className='disc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illo, optio porro repellendus mollitia cum quibusdam vel fugiat beatae sunt adipisci? In eaque ratione ullam harum accusantium doloremque voluptatum voluptate, animi mollitia doloribus dolorem non accusamus similique ex veniam tempora itaque voluptas. Amet officia architecto harum! Temporibus libero neque dolorem dolorum suscipit eum ducimus beatae eius ipsa! Impedit tenetur provident eos adipisci excepturi fuga reprehenderit autem at natus maxime iusto cumque alias, nesciunt tempore ab praesentium incidunt exercitationem dignissimos ex quod debitis vitae ea nemo corporis? Illum cum, atque unde similique amet labore, quaerat earum tempora ex ipsum totam laboriosam!{/*currentArt.discription*/}</td>
-                <td>450000000000000{/*currentArt.price*/}</td>
-                <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
-                  <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing.{/*currentArt.title*/}</td>
-                <td className='disc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt magni in sed quod aut dolore ab eligendi maxime similique quibusdam.{/*currentArt.discription*/}</td>
-                <td>45000000{/*currentArt.price*/}</td>
-                <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
-                  <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
-              </tr>
+              {currentArt && currentArt.map((art) => {
+
+                return (
+                  <tr>
+                    <th scope="row">{art._id}</th>
+                    <td>{art.title}</td>
+                    <td className='disc'>{art.discription}</td>
+                    <td>{art.price}</td>
+                    <td>
+                      <button className='btn btn-warning' onClick={updateArt}><i className="fas fa-edit fa-lg"></i></button> &nbsp;
+                      <button className='btn btn-danger' onClick={() => { deleteArt(art._id) }}><i className="fas fa-trash fa-lg"></i></button>
+                    </td>
+                  </tr>
+                )
+              })}
+
             </tbody>
           </table>
 

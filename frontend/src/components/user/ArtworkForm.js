@@ -74,7 +74,7 @@ const ArtworkForm = () => {
                             : null
                         }
                         <div className="inputBx">
-                            <span>Discription</span>
+                            <span>Description</span>
                             <input type="text" name='discription' id='discription' autoComplete='off' value={values.discription} onChange={handleChange} onBlur={handleBlur} />
                         </div>
                         {errors.discription && touched.discription ?

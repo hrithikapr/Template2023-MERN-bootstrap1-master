@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import signUpImg from '../../assets/images/SignUp.jpg'
 import { useFormik } from 'formik';
@@ -6,11 +6,26 @@ import { signupschema } from '../../validationSchema';
 // import Swal from 'sweetalert2';
 import Typewriter from 'typewriter-effect';
 import ManageArtForm from './ManageArtForm';
+import app_config from '../../config';
 
 
 const ManageExhibitions = () => {
 
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
+  const [currentExhibition, setCurrentExhibition] = useState([])
+
+  const fetchExhibitionData = async () => {
+    const res = await fetch(app_config.apiurl + '/exhibition/getall')
+    // console.log(res.status);
+    const exhiData = await res.json()
+    console.log(exhiData);
+    setCurrentExhibition(exhiData.result)
+
+  };
+  useEffect(() => {
+    fetchExhibitionData();
+  }, []);
+
 
   const deleteArt = async (id) => {
     alert('Delete ' + currentUser._id);
@@ -95,15 +110,6 @@ const ManageExhibitions = () => {
                 <td className='disc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam illo, optio porro repellendus mollitia cum quibusdam vel fugiat beatae sunt adipisci? In eaque ratione ullam harum accusantium doloremque voluptatum voluptate, animi mollitia doloribus dolorem non accusamus similique ex veniam tempora itaque voluptas. Amet officia architecto harum! Temporibus libero neque dolorem dolorum suscipit eum ducimus beatae eius ipsa! Impedit tenetur provident eos adipisci excepturi fuga reprehenderit autem at natus maxime iusto cumque alias, nesciunt tempore ab praesentium incidunt exercitationem dignissimos ex quod debitis vitae ea nemo corporis? Illum cum, atque unde similique amet labore, quaerat earum tempora ex ipsum totam laboriosam!{/*currentArt.discription*/}</td>
                 <td>Lorem ipsum dolor sit amet.</td>
                 <td>450000000000000{/*currentArt.price*/}</td>
-                <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
-                  <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing.{/*currentArt.title*/}</td>
-                <td className='disc'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt magni in sed quod aut dolore ab eligendi maxime similique quibusdam.{/*currentArt.discription*/}</td>
-                <td>Lorem ipsum dolor sit amet.</td>
-                <td>45000000{/*currentArt.price*/}</td>
                 <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
                   <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
               </tr>

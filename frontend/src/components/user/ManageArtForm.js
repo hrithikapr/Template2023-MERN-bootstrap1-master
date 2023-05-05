@@ -11,6 +11,7 @@ const ManageArtForm = () => {
     const [currentArts, setCurrentArts] = useState(JSON.parse(sessionStorage.getItem('art')));
 
     const initialValues = {
+        organizer: currentUser._id,
         artworks: '',
         theme: 'white',
         price: 0,
@@ -75,6 +76,36 @@ const ManageArtForm = () => {
                                 <label>
                                     <input type="checkbox" name='art3' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
                                     <span>Art3</span>
+                                </label>
+                            </div>
+                            <div className="arts">
+                                <label>
+                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
+                                    <span>Art4</span>
+                                </label>
+                            </div>
+                            <div className="arts">
+                                <label>
+                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
+                                    <span>Art4</span>
+                                </label>
+                            </div>
+                            <div className="arts">
+                                <label>
+                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
+                                    <span>Art4</span>
+                                </label>
+                            </div>
+                            <div className="arts">
+                                <label>
+                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
+                                    <span>Art4</span>
+                                </label>
+                            </div>
+                            <div className="arts">
+                                <label>
+                                    <input type="checkbox" name='art4' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
+                                    <span>Art4</span>
                                 </label>
                             </div>
                             <div className="arts">

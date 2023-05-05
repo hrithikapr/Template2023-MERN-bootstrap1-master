@@ -57,8 +57,6 @@ const Signin = () => {
           text: 'Something went wrong!'
         })
       }
-
-
       resetForm()
     }
   })
