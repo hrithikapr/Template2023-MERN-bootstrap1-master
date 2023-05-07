@@ -67,16 +67,18 @@
 .content-table .table{
     font-size: 15px;
     margin-top: 25px;
+    font-family: 'Helvetica';
 }
 
 .content-table .table thead{
     font-size: 18px;
     font-weight: 600;
+    font-family: 'Coolvetica';
     color: #222;
 }
 
 .content-table .table .disc{
-    width: 50%;
+    width: 40%;
 }
 
 .content-table .table .fa-edit,

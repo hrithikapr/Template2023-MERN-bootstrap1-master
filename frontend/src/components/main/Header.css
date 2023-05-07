@@ -2,12 +2,18 @@
     background-color: #ffffffad;
 }
 
+.nav-item .active {
+    color: #123C69 !important;
+    /* border-bottom: 2px solid #123C69; */
+}
+
 .nav-link {
     font-family: "Coolvetica";
-    color: #333;
+    color: #123c69d3 !important;
     letter-spacing: 1px;
     font-size: 17px;
-}   
+}
+
 
 .nav-link:hover {
     opacity: 0.9;

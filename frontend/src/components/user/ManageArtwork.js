@@ -17,8 +17,7 @@ const ManageArtwork = () => {
   // const [showForm, setShowForm] = useState(false);
 
   const fetchArtData = async () => {
-    const res = await fetch(app_config.apiurl + '/art/getall')
-    // console.log(res.status);
+    const res = await fetch(app_config.apiurl + '/art/getbyuser/'+currentUser._id)
     const artData = await res.json()
     console.log(artData);
     setCurrentArt(artData.result)
@@ -110,6 +109,7 @@ const ManageArtwork = () => {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Artist</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price </th>
                 <th scope="col">Action</th>
@@ -117,15 +117,16 @@ const ManageArtwork = () => {
             </thead>
             <tbody>
 
-              {currentArt && currentArt.map((art) => {
+              {currentArt && currentArt.map((art, index) => {
 
                 return (
                   <tr>
-                    <th scope="row">{art._id}</th>
+                    <th scope="row">{index+1}</th>
                     <td>{art.title}</td>
+                    {/* <td>{art.artist}</td> */}
                     <td className='disc'>{art.discription}</td>
-                    <td>{art.price}</td>
-                    <td>
+                    <td>₹{art.price}</td>
+                    <td className=''>
                       <button className='btn btn-warning' onClick={updateArt}><i className="fas fa-edit fa-lg"></i></button> &nbsp;
                       <button className='btn btn-danger' onClick={() => { deleteArt(art._id) }}><i className="fas fa-trash fa-lg"></i></button>
                     </td>

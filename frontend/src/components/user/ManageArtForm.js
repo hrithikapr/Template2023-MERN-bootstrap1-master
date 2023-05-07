@@ -12,8 +12,8 @@ const ManageArtForm = () => {
 
     const initialValues = {
         title: '',
-        artworks: [currentArts],
-        theme: 'White',
+        artworks: [],
+        theme: '',
         price: 0,
         start_at: '',
         end_at: ''
@@ -52,6 +52,7 @@ const ManageArtForm = () => {
         }
     })
 
+    
 
 
     return (
@@ -61,7 +62,7 @@ const ManageArtForm = () => {
                     <form className='art-form row' onSubmit={handleSubmit}>
                         <div className="your-arts">
                             <div className="arts">
-                                {}
+                                {/* {} */}
                                 <label>
                                     <input type="checkbox" name='art1' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
                                     <span>Art1</span>
@@ -79,12 +80,12 @@ const ManageArtForm = () => {
                         </div>
                         <div className="inputBx col-6">
                             <span>Themes</span>
-                            <select name="theme" id="theme" onChange={handleChange} onBlur={handleBlur}>
-                                <option value={values.theme}>White</option>
-                                <option value={values.theme}>Olive</option>
-                                <option value={values.theme}>Grey</option>
-                                <option value={values.theme}>LightBlue</option>
-                                <option value={values.theme}>Golden</option>
+                            <select name="theme" id="theme" onChange={handleChange} value={values.theme} onBlur={handleBlur}>
+                                <option value='white'>White</option>
+                                <option value='olive'>Olive</option>
+                                <option value='grey'>Grey</option>
+                                <option value='lightblue'>LightBlue</option>
+                                <option value='golden'>Golden</option>
                             </select>
                         </div>
 

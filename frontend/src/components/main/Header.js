@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import './Header.css'
-import logo from '../../assets/images/Wolf.svg'
+import logo from '../../assets/images/vm-logo.svg'
 
 
 const Header = () => {
@@ -29,7 +29,7 @@ const Header = () => {
           <NavLink className="navbar-brand mt-2 mt-lg-0" to="/main/home">
             <img
               src={logo}
-              height={40}
+              height={45}
               alt="Logo"
               loading="lazy"
             />

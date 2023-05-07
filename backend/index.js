@@ -22,6 +22,7 @@ app.use('/user', userRouter);
 app.use('/art', artRouter);
 app.use('/exhibition', exhibitionRouter);
 
+app.use(express.static('./static/uploads'));
 
 app.get('/', (req, res) => {
     console.log('Request at index');

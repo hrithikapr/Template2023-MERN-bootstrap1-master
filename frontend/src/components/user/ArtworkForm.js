@@ -64,7 +64,12 @@ const ArtworkForm = () => {
                             <p className='text-danger form-error'>{errors.title}</p>
                             : null
                         }
-
+                       
+                       <div className="inputImgBx">
+                            <span>Upload Images</span>
+                            <input type="file" name='image' id='image' autoComplete='off' value={values.image} onChange={handleChange} onBlur={handleBlur} />
+                        </div>
+                        
                         <div className="inputBx">
                             <span>Price</span>
                             <input type="number" name='price' id='price' autoComplete='off' value={values.price} onChange={handleChange} onBlur={handleBlur} />

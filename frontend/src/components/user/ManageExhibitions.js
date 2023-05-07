@@ -13,6 +13,7 @@ const ManageExhibitions = () => {
 
   const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
   const [currentExhibition, setCurrentExhibition] = useState([])
+  const [artworkList, setArtworkList] = useState([]);
 
   const fetchExhibitionData = async () => {
     const res = await fetch(app_config.apiurl + '/exhibition/getall')
@@ -20,10 +21,18 @@ const ManageExhibitions = () => {
     const exhiData = await res.json()
     console.log(exhiData);
     setCurrentExhibition(exhiData.result)
-
   };
+  
+  const getUserArtworks = async () => {
+    const res = await fetch(app_config.apiurl + '/art/getbyuser/'+currentUser._id)
+    const data = await res.json();
+    console.log(data);
+    setArtworkList(data.result);
+  }
+
   useEffect(() => {
     fetchExhibitionData();
+    getUserArtworks();
   }, []);
 
 

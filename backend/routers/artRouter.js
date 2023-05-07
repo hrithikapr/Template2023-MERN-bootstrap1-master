@@ -36,6 +36,18 @@ router.get("/getall", (req, res) => {
     });
 });
 
+router.get("/getbyuser/:id", (req, res) => {
+  Model.find({organizer: req.params.id}).populate('organizer')
+    .then((result) => {
+      console.log("User Data Retrieved");
+      res.status(200).json({ status: "success", result });
+    })
+    .catch((err) => {
+      console.error("Error retrieving user data", err);
+      res.status(500).send("Error retrieving user data");
+    });
+});
+
 router.get("/getbyid/:id", (req, res) => {
   Model.findById(req.params.id)
     .then((result) => {
