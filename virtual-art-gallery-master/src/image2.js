@@ -1,6 +1,7 @@
 'strict mode';
 
 const api = require('../api/api');
+const getexhibitionDataById = require('./ManageExhibition');
 const selectedApi = new URLSearchParams(window.location.search).get("api");
 const dataAccess = api[selectedApi] || api[api.default];
 const text = require('./text');
@@ -29,6 +30,32 @@ const emptyImage = (regl) => [
 	1
 ];
 
+function convertImageToBlob(imageUrl, cb) {
+	return new Promise((resolve, reject) => {
+	  const canvas = document.createElement('canvas');
+	  const ctx = canvas.getContext('2d');
+	  const img = new Image();
+	  img.crossOrigin = 'anonymous';
+	  img.onload = () => {
+		canvas.width = img.width;
+		canvas.height = img.height;
+		ctx.drawImage(img, 0, 0);
+		canvas.toBlob(resolve, 'image/jpeg');
+	  };
+	  img.onerror = reject;
+	  img.src = imageUrl;
+	});
+  }
+
+  const initArtworkData = (artList) => {
+	console.log(artList);
+	let apiUrl = 'http://localhost:5000';
+	Promise.all(artList.map(async ({title, image}) => ({title, image : await convertImageToBlob(apiUrl+'/'+image) }) )).then(data => {
+		console.log(data);
+	})
+  }
+  
+
 async function loadImage(regl, p, res) {
 	if (aniso === false) {
 		aniso = regl.hasExtension('EXT_texture_filter_anisotropic') ? regl._gl.getParameter(
@@ -39,6 +66,11 @@ async function loadImage(regl, p, res) {
 	
 	let image, title;
 	try {
+		getexhibitionDataById((artData) => {
+			// console.log(artData);
+			initArtworkData(artData.result.artworks);
+		})
+		// const data = await dataAccess.fetchImage(p, dynamicQual(res));
 		const data = await dataAccess.fetchImage(p, dynamicQual(res));
 		console.log(data);
 		title = data.title;

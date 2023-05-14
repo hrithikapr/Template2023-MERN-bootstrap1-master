@@ -96,7 +96,7 @@ const ManageArtwork = () => {
                 />
               </div>
               <div className="modal-body">
-                <ArtworkForm />
+                <ArtworkForm refreshData={fetchArtData} />
               </div>
             </div>
           </div>
@@ -109,6 +109,7 @@ const ManageArtwork = () => {
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
+                <th scope="col">Image</th>
                 <th scope="col">Artist</th>
                 <th scope="col">Description</th>
                 <th scope="col">Price </th>
@@ -123,10 +124,13 @@ const ManageArtwork = () => {
                   <tr>
                     <th scope="row">{index+1}</th>
                     <td>{art.title}</td>
-                    {/* <td>{art.artist}</td> */}
+                    <td>
+                      <img src={app_config.apiurl + '/' + art.image} height={200} />
+                    </td>
+                    <td>{art.artist}</td>
                     <td className='disc'>{art.discription}</td>
                     <td>₹{art.price}</td>
-                    <td className=''>
+                    <td className='action-btn'>
                       <button className='btn btn-warning' onClick={updateArt}><i className="fas fa-edit fa-lg"></i></button> &nbsp;
                       <button className='btn btn-danger' onClick={() => { deleteArt(art._id) }}><i className="fas fa-trash fa-lg"></i></button>
                     </td>

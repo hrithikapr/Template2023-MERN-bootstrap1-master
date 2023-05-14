@@ -16,15 +16,15 @@ const ManageExhibitions = () => {
   const [artworkList, setArtworkList] = useState([]);
 
   const fetchExhibitionData = async () => {
-    const res = await fetch(app_config.apiurl + '/exhibition/getall')
+    const res = await fetch(app_config.apiurl + '/exhibition/getbyuser/' + currentUser._id);
     // console.log(res.status);
     const exhiData = await res.json()
     console.log(exhiData);
     setCurrentExhibition(exhiData.result)
   };
-  
+
   const getUserArtworks = async () => {
-    const res = await fetch(app_config.apiurl + '/art/getbyuser/'+currentUser._id)
+    const res = await fetch(app_config.apiurl + '/art/getbyuser/' + currentUser._id)
     const data = await res.json();
     console.log(data);
     setArtworkList(data.result);
@@ -123,14 +123,16 @@ const ManageExhibitions = () => {
                     <td>{exhib.start_at.slice(0, 10)} to {exhib.end_at.slice(0, 10)}</td>
                     <td>
                       <select name="arts" id="arts">
-                        <option value={exhib.artworks}>Historia <Link to="/"> x </Link></option>
+                        <option value={exhib.artworks}>Historia</option>
                         <option value={exhib.artworks}>Pictoria</option>
                         <option value={exhib.artworks}>Historia</option>
                       </select>
                     </td>
                     <td>{exhib.price}</td>
-                    <td><i className="fas fa-edit fa-lg text-warning" onClick={updateArt}></i> |
-                      <i className="fas fa-trash fa-lg text-danger" onClick={deleteArt}></i></td>
+                    <td>
+                      <button className='btn btn-warning' onClick={updateArt}><i className="fas fa-edit fa-lg"></i></button> &nbsp;
+                      <button className='btn btn-danger' onClick={() => { }}><i className="fas fa-trash fa-lg"></i></button>
+                    </td>
                   </tr>
                 )
               })}

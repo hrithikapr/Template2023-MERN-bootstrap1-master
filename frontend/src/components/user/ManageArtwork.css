@@ -80,7 +80,9 @@
 .content-table .table .disc{
     width: 40%;
 }
-
+.content-table .table .action-btn{
+    width: 20%;
+}
 .content-table .table .fa-edit,
 .content-table .table .fa-trash{
     cursor: pointer;   

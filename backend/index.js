@@ -5,6 +5,7 @@ dotenv.config();
 const userRouter = require('./routers/userRouter');
 const artRouter = require('./routers/artRouter');
 const exhibitionRouter = require('./routers/exhibitionRouter');
+const utilRouter = require('./routers/util');
 const cors = require('cors');
 const { PORT } = require('./config');
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/user', userRouter);
 app.use('/art', artRouter);
 app.use('/exhibition', exhibitionRouter);
+app.use('/util', utilRouter);
 
 app.use(express.static('./static/uploads'));
 

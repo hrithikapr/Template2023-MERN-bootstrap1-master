@@ -120,3 +120,7 @@
 .form-content .artformBx .inputBx input[type='submit']:hover {
     opacity: 0.9;
 }
+
+.form-content .artformBx .inputBx input[type='file']{
+    padding: 20px;
+}

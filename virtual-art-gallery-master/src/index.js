@@ -48,7 +48,7 @@ placement = require('./placement')(regl, map);
 drawPainting = require('./painting')(regl);
 fps = require('./fps')(map, fovY);
 
-getexhibitionDataById();
+// getexhibitionDataById();
 
 const context = regl({
 	cull: {

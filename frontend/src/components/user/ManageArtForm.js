@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ArtworkForm.css'
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
@@ -9,12 +9,16 @@ const ManageArtForm = () => {
 
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
     const [currentArts, setCurrentArts] = useState(JSON.parse(sessionStorage.getItem('art')));
+    const [artworkList, setArtworkList] = useState([]);
+
+    const [selArtworks, setSelArtworks] = useState([]);
 
     const initialValues = {
         title: '',
         artworks: [],
-        theme: '',
+        theme: 'white',
         price: 0,
+        organizer: currentUser._id,
         start_at: '',
         end_at: ''
     }
@@ -25,6 +29,7 @@ const ManageArtForm = () => {
         initialValues,
         // validationSchema: artSchema,
         onSubmit: async (values, { resetForm }) => {
+            values.artworks = selArtworks;
             console.log(values);
 
             const res = await fetch(url + '/exhibition/add', {
@@ -52,7 +57,26 @@ const ManageArtForm = () => {
         }
     })
 
-    
+    const fetchArtData = async () => {
+        const res = await fetch(app_config.apiurl + '/art/getbyuser/' + currentUser._id)
+        const artData = await res.json()
+        console.log(artData);
+        setArtworkList(artData.result);
+
+    };
+
+    useEffect(() => {
+        fetchArtData();
+    }, []);
+
+    const handleSelArtwork = (art_id, op) => {
+        // console.log(selArtworks);
+        if (op === 'add') {
+            if (!selArtworks.find(id => id === art_id)) setSelArtworks([...selArtworks, art_id]);
+        } else if (op === 'remove') {
+            setSelArtworks(selArtworks.filter(id => id !== art_id));
+        }
+    }
 
 
     return (
@@ -62,11 +86,17 @@ const ManageArtForm = () => {
                     <form className='art-form row' onSubmit={handleSubmit}>
                         <div className="your-arts">
                             <div className="arts">
-                                {/* {} */}
-                                <label>
-                                    <input type="checkbox" name='art1' value={values.artworks} onChange={handleChange} onBlur={handleBlur} />
-                                    <span>Art1</span>
-                                </label>
+                                {
+                                    artworkList.map(art => (
+                                        <label>
+                                            <input type="checkbox" checked={selArtworks.includes(art._id)} onChange={e => {
+                                                if (e.target.checked) handleSelArtwork(art._id, 'add');
+                                                else handleSelArtwork(art._id, 'remove');
+                                            }} />
+                                            <span>{art.title}</span>
+                                        </label>
+                                    ))
+                                }
                             </div>
                         </div>
                         <hr />

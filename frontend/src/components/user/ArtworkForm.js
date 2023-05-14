@@ -5,14 +5,18 @@ import Swal from 'sweetalert2';
 import app_config from '../../config';
 import { artSchema } from '../../validationSchema';
 
-const ArtworkForm = () => {
+const ArtworkForm = ({refreshData}) => {
 
     const [currentUser, setCurrentUser] = useState(JSON.parse(sessionStorage.getItem('user')));
+    const [selImage, setSelImage] = useState(null);
 
     const initialValues = {
         title: "",
+        image: "",
+        artist: "",
         discription: "",
-        price: ""
+        organizer: currentUser._id,
+        price: 0
     }
 
     const url = app_config.apiurl;
@@ -21,7 +25,7 @@ const ArtworkForm = () => {
         initialValues,
         // validationSchema: artSchema,
         onSubmit: async (values, { resetForm }) => {
-
+            values.image = selImage.name;
             console.log(values);
             const res = await fetch(url + '/art/add', {
                 method: 'POST',
@@ -37,6 +41,7 @@ const ArtworkForm = () => {
                     text: 'Art added successfully'
                 })
                 resetForm();
+                refreshData();
             }
             else {
                 Swal.fire({
@@ -46,9 +51,22 @@ const ArtworkForm = () => {
                 })
             }
         }
-    })
+    });
 
-
+    const uploadFile = (e) => {
+        const file = e.target.files[0];
+        const fd = new FormData();
+        setSelImage(file);
+        fd.append("myfile", file);
+        fetch(url + "/util/uploadfile", {
+          method: "POST",
+          body: fd,
+        }).then((res) => {
+          if (res.status === 200) {
+            console.log("file uploaded");
+          }
+        });
+      };
 
     return (
         <>
@@ -57,21 +75,21 @@ const ArtworkForm = () => {
                 <div className="artformBx">
                     <form className='art-form' onSubmit={handleSubmit}>
                         <div className="inputBx">
-                            <span>Title</span>
+                            <span>Artwork Title</span>
                             <input type="text" name='title' id='title' autoComplete='off' value={values.title} onChange={handleChange} onBlur={handleBlur} />
                         </div>
                         {errors.title && touched.title ?
                             <p className='text-danger form-error'>{errors.title}</p>
                             : null
                         }
-                       
-                       <div className="inputImgBx">
-                            <span>Upload Images</span>
-                            <input type="file" name='image' id='image' autoComplete='off' value={values.image} onChange={handleChange} onBlur={handleBlur} />
+
+                        <div className="inputImgBx">
+                            <span>Upload Artwork</span>
+                            <input type="file"  onChange={uploadFile} />
                         </div>
-                        
+
                         <div className="inputBx">
-                            <span>Price</span>
+                            <span>Artwork Price</span>
                             <input type="number" name='price' id='price' autoComplete='off' value={values.price} onChange={handleChange} onBlur={handleBlur} />
                         </div>
                         {errors.price && touched.price ?
@@ -79,7 +97,15 @@ const ArtworkForm = () => {
                             : null
                         }
                         <div className="inputBx">
-                            <span>Description</span>
+                            <span>Artist</span>
+                            <input type="text" name='artist' id='artist' autoComplete='off' value={values.artist} onChange={handleChange} onBlur={handleBlur} />
+                        </div>
+                        {errors.discription && touched.discription ?
+                            <p className='text-danger form-error'>{errors.discription}</p>
+                            : null
+                        }
+                        <div className="inputBx">
+                            <span>Artwork Description</span>
                             <input type="text" name='discription' id='discription' autoComplete='off' value={values.discription} onChange={handleChange} onBlur={handleBlur} />
                         </div>
                         {errors.discription && touched.discription ?
